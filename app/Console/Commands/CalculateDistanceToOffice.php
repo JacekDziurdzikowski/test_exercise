@@ -46,12 +46,12 @@ class CalculateDistanceToOffice extends Command {
 		foreach ($offices  as $office ) {
 
 			$this->line( 'Distance to ' . $office['name']. ': ' . $distanceCalculator->calculate(
-					[ $lat, $lng ],
-					[ $office['lat'], $office['lng'] ],
+					[ 'lat' => $lat, 'lng' => $lng ],
+					[ 'lat' => $office['lat'], 'lng' =>$office['lng'] ],
 					'km' )
 			);
 		}
 
-		$this->line( 'Closest office: ' . $distanceCalculator->findClosestOffice( [ $lat, $lng ], $offices ) );
+		$this->line( 'Closest office: ' . $distanceCalculator->findClosestOffice( [ 'lat' => $lat, 'lng' => $lng ], $offices )['name'] );
 	}
 }
