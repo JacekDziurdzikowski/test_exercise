@@ -43,7 +43,7 @@ class CalculateResponseTime extends Command
 
         foreach ( $bookings as $booking ) {
 
-            $this->line( "Response time for booking with id: " . $booking['id'] . " in office " . $booking['office']['name'] . " was: " . $responseTimeCalculator->calculate( $booking ) );
+            $this->line( "Response time for booking with id: " . $booking['id'] . " in office " . $booking['office']['name'] . " was: " . $responseTimeCalculator->calculate($booking['created_at'], $booking['updated_at'], $booking['office']['office_hours']) . " minutes.");
 
         }
 
