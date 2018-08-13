@@ -38,8 +38,14 @@ class CalculateResponseTime extends Command
      * @return mixed
      */
     public function handle() {
+        $responseTimeCalculator = new ResponseTimeCalculator();
         $bookings = BookingModel::with('office')->get()->toArray();
-        var_dump($bookings);
+
+        foreach ( $bookings as $booking ) {
+
+            $this->line( "Response time for booking with id: " . $booking['id'] . " in office " . $booking['office']['name'] . " was: " . $responseTimeCalculator->calculate( $booking ) );
+
+        }
 
 	    //Use ResponseTimeCalculator class for all calculations
 	    //You can use $this->line() to write out any info to console
